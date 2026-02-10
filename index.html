@@ -1,50 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-    <title>Hola Mundo</title>
+    <title>Prueba XSS</title>
 
     <style>
         body {
             background-color: #0f172a;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
+            gap: 20px;
         }
-        
+
         h1 {
             color: #38bdf8;
-            font-size: 60px;
+            font-size: 50px;
             background-color: #020617;
             padding: 20px 40px;
             border-radius: 15px;
             box-shadow: 0 0 20px #38bdf8;
-            transition: all 0.3s ease;
-            /* animación smooth */
+        }
+
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        button {
+            background-color: #38bdf8;
             cursor: pointer;
         }
-        /* 👇 EFECTO HOVER */
-        
-        h1:hover {
-            background-color: #7dd3fc;
-            /* azul celeste */
-            color: #000000;
-            /* negro */
-            box-shadow: 0 0 25px #7dd3fc;
-        }
-    </style>
 
+        #resultado {
+            color: white;
+            font-size: 20px;
+        }
     </style>
 </head>
 
 <body>
 
-    <h1>Hola Mundo :D</h1>
+    <h1>Prueba XSS</h1>
+
+    <form onsubmit="mostrarTexto(); return false;">
+        <input type="text" id="entrada" placeholder="Escribe algo">
+        <button type="submit">Enviar</button>
+    </form>
+
+    <p id="resultado"></p>
+
+    <script>
+        function mostrarTexto() {
+            let texto = document.getElementById("entrada").value;
+            document.getElementById("resultado").innerHTML = texto;
+        }
+    </script>
 
 </body>
-
 </html>
